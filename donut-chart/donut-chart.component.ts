@@ -10,6 +10,7 @@ export class DonutChartComponent implements OnInit {
   data: any;
   constructor() { }
 
+  //get the student marks form csv file
   ngOnInit() {
     d3.csv('../assets/students.csv').then((data) => {
       if (data) {

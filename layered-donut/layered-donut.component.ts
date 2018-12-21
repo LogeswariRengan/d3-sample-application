@@ -20,21 +20,23 @@ export class LayeredDonutComponent implements OnInit {
 
   constructor() { }
 
+  //get the student mark details form csv files
   ngOnInit() {
     d3.csv("../assets/firstYr-student-marks.csv").then((studentData) => {
       this.firstYrstudentRecords = studentData;
       console.log("1 yr records", this.firstYrstudentRecords);
-      // this.drawDonut(this.studentRecords)
+      
     })
     d3.csv("../assets/secondYr-student-marks.csv").then((studentData) => {
       this.secondYrstudentRecords = studentData;
       console.log(" 2 yr records", this.secondYrstudentRecords);
-      // this.drawDonut(this.studentRecords)
+      
     })
 
 
   }
 
+  //filter the records based on the selected student name
   filterRecords(name, year1Record, year2Record) {
 
     var chartData = new ChartData();
@@ -86,16 +88,19 @@ export class LayeredDonutComponent implements OnInit {
   }
 
 
+//define the number of layers
   drawDonuts(data) {
     console.log("object length", Object.keys(data).length)
     for (let i = 0; i < Object.keys(data).length; i++) {
       let index = Object.keys(data)[i]
-      console.log("asfaf", data[index])
+     
       this.drawLayer(data[index], i)
 
     }
   }
 
+
+  //draw the donut charts 
   drawLayer(_data, i) {
 
     //select svg element
@@ -160,53 +165,7 @@ export class LayeredDonutComponent implements OnInit {
 
   }
   
-  // var pie = d3.pie()
-  //   .padAngle(0.005)
-  //   .value(d =>{
-  //     console.log("pie",d)
-  //   } );
-
-  // var pieData = pie(data);
-
-  // var arc = d3.arc()
-  //   .innerRadius(radius * 0.67)
-  //   .outerRadius(radius - 1);
-
  
-  // var g = svg.append("g")
-  //   .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-  // // draw chart using path
-  // g.selectAll("path")
-  //   .data(pieData)
-  //   .enter()
-  //   .append("path")
-  //   .attr("fill", function (d, i) {
-  //     console.log("##############", d)
-  //     return colors(d.data);
-  //   })
-  //   .attr("d", arc)
-  //   .append("title")
-  //   .text(d => d.data)
-
-
-
-  // //to compute label positioning for text
-  // var text = g.selectAll("text")
-  //   .data(pieData)
-  //   .enter()
-  //   .append("text")
-  //   .attr("transform", d => "translate(" + arc.centroid(d) + ")")//centroid has the start and end angle of the arc
-  //   .attr("dy", "0.35em");
-
-
-
-  // text.append("tspan")
-  //   .attr("x", "-1.0em")
-  //   .attr("y", "-0.7em")
-  //   .style("font-weight", "bold")
-  //   .text(d => d.data);
-
-
 
 
 
